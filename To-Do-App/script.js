@@ -27,7 +27,6 @@ function TaskAddition() {
   taskTitle.value = "";
 }
 
-// click handler
 document.addEventListener("click", function (e) {
   if (e.target.closest(".add-btn")) {
     TaskAddition();
@@ -40,5 +39,21 @@ function removeTask() {
 document.addEventListener("click", function (e) {
   if (e.target.closest(".cross-btn")) {
     removeTask();
+  }
+});
+function CompleteTask(checkbox) {
+  const task = checkbox.closest(".task-details");
+  const title = task.querySelector(".task-title");
+
+  title.classList.add("selected");
+
+  setTimeout(() => {
+    task.remove();
+  }, 1000);
+}
+
+document.addEventListener("click", function (e) {
+  if (e.target.matches("input[type='checkbox']")) {
+    CompleteTask(e.target);
   }
 });
